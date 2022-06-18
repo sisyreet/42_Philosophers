@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 19:43:47 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/11 15:59:29 by sisyreet         ###   ########.fr       */
+/*   Created: 2022/02/21 13:23:39 by sisyreet          #+#    #+#             */
+/*   Updated: 2022/06/18 17:15:58 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_BONUS_H
-#define PHILO_BONUS_H
+#include "includes/philo.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-
-typedef struct s_data
+int	main(int argc, char **argv)
 {
-	int	num_of_phils;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	notepme;
-	
-}	t_data;
-
-typedef struct s_philo
-{
-	int		id;
-	long	last_time_eat;
-	int		number_of_eats;
-	int		notepme;
-	int		pid;
-}	t_philo;
-
-int	ft_atoi(const char *nptr);
-
-#endif
+	t_data	*data;
+	if (check_args(argc, argv))
+		return (1);
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		return (-1);
+	if (init_data(argc, argv, data))
+		return (1);
+	ft_free(data);
+	return (0);
+}
