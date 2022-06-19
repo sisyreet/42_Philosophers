@@ -6,11 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:07:04 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/19 16:16:41 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/06/19 12:54:29 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
 	int				i;
 	long long int	k;
@@ -19,17 +19,19 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	k = 0;
 	minus = 1;
-	while ((nptr[i] > 8 && nptr[i] < 14) || (nptr[i] == 32))
+	while ((str[i] > 8 && str[i] < 14) || (str[i] == 32))
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (nptr[i] == '-')
+		if (str[i] == '-')
 			minus = 1 * (-1);
 		i++;
 	}
-	while (nptr[i] > 47 && nptr[i] < 58)
+	while (str[i] > 47 && str[i] < 58)
 	{
-		k = k * 10 + (nptr[i++] - '0');
+		k = k * 10 + (str[i++] - '0');
+		if (k > 2147483647)
+			return (0);
 		if (k < 0)
 			return (0);
 	}

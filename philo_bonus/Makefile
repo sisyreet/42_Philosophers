@@ -1,6 +1,6 @@
-NAME			= philo
+NAME			= philo_bonus
 
-SRCS			= checks.c init.c main.c routine.c utils.c \
+SRCS			= main_bonus.c utils_bonus.c init_bonus.c start_dinned.c \
 				  includes/ft_atoi.c
 
 HEADER			= includes/philo.h
@@ -9,7 +9,7 @@ OBJS			= $(SRCS:.c=.o)
 
 CC				= gcc
 RM				= rm -rf
-CFLAGS			= -pthread -g -Wall -Wextra -Werror
+CFLAGS			= -pthread -Wall -Wextra -Werror
 
 .PHONY:			all clean fclean re
 

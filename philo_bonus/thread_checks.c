@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   thread_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 13:23:39 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/18 17:15:58 by sisyreet         ###   ########.fr       */
+/*   Created: 2022/06/19 16:51:31 by sisyreet          #+#    #+#             */
+/*   Updated: 2022/06/19 16:56:51 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "includes/philo_bonus.h"
 
-int	main(int argc, char **argv)
+int	eat_check(t_env *env, t_philo *philo)
 {
-	t_data	*data;
-	if (check_args(argc, argv))
+	sem_wait(env->eat);
+	if (env->notepme != -1 && philo->eats_done >= env->notepme)
+	{
+		sem_post(env->eat);
 		return (1);
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		return (-1);
-	if (init_data(argc, argv, data))
-		return (1);
-	ft_free(data);
+	}
+	sem_post(env->eat);
 	return (0);
 }
