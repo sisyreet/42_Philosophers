@@ -9,7 +9,7 @@ OBJS			= $(SRCS:.c=.o)
 
 CC				= gcc
 RM				= rm -rf
-CFLAGS			= -pthread -Wall -Wextra -Werror
+CFLAGS			= -pthread -Wall -Wextra #-Werror
 
 .PHONY:			all clean fclean re
 

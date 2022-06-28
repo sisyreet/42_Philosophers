@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:24:15 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/04/08 12:16:27 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:27:06 by kos              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	take_fork(t_phil *phil)
 {
 	if (phil->id == 0)
 	{
-		death_check(phil);
 		pthread_mutex_lock(&phil->forks[phil->data->num_of_phils - 1].mutex);
 		print_fork(phil, 1);
 		if (phil->data->num_of_phils == 1)
@@ -42,20 +41,16 @@ void	take_fork(t_phil *phil)
 			smart_usleep(phil->data->time_to_die + 1);
 			death_check(phil);
 		}
-		death_check(phil);
 		pthread_mutex_lock(&phil->forks[phil->id].mutex);
 		print_fork(phil, 2);
 	}
 	else
 	{
-		death_check(phil);
 		pthread_mutex_lock(&phil->forks[phil->id].mutex);
 		print_fork(phil, 2);
-		death_check(phil);
 		pthread_mutex_lock(&phil->forks[phil->id - 1].mutex);
 		print_fork(phil, 1);
 	}
-	death_check(phil);
 	print_eat(phil);
 }
 
