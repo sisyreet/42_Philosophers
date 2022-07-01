@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 20:16:56 by kos               #+#    #+#             */
-/*   Updated: 2022/06/27 22:26:35 by kos              ###   ########.fr       */
+/*   Updated: 2022/07/01 20:23:36 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo_bonus.h"
+#include "philo_bonus.h"
 
 void	exit_with_message(char *msg, int code)
 {

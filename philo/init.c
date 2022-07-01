@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:56:15 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/28 22:24:49 by kos              ###   ########.fr       */
+/*   Updated: 2022/07/01 20:30:52 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "philo.h"
+
+void	declare_death(t_data *data, int i)
+{
+	pthread_mutex_lock(&data->print_mutex);
+	pthread_mutex_lock(&data->death_mutex);
+	printf("%ld %d died\n", get_current_time()
+		- data->thread_start_time, data->phils[i].id + 1);
+	data->phil_is_dead = 1;
+	pthread_mutex_unlock(&data->death_mutex);
+}
 
 int	wait_for_philosophers(t_data *data)
 {
@@ -19,16 +29,14 @@ int	wait_for_philosophers(t_data *data)
 	while (1)
 	{
 		i = 0;
-		while(i < data->num_of_phils)
+		while (i < data->num_of_phils)
 		{
-			printf("");
-			if ((get_current_time() - data->phils[i].last_time_eat) > data->time_to_die)
+			if ((get_current_time() - data->phils[i].last_time_eat)
+				> data->time_to_die)
 			{
-				pthread_mutex_lock(&data->print_mutex);
-				pthread_mutex_lock(&data->death_mutex);
-				printf("%ld %d died\n", get_current_time() - data->thread_start_time, data->phils[i].id);
-				data->phil_is_dead = 1;
-				pthread_mutex_unlock(&data->death_mutex);
+				declare_death(data, i);
+				if (data->phil_is_dead)
+					return (0);
 			}
 			pthread_mutex_lock(&data->death_mutex);
 			if (data->phil_is_dead)
@@ -38,17 +46,6 @@ int	wait_for_philosophers(t_data *data)
 			pthread_mutex_unlock(&data->death_mutex);
 		}
 	}
-	// while (1)
-	// {
-	// 	printf("");
-	// 	pthread_mutex_lock(&data->death_mutex);
-	// 	if (data->phil_is_dead)
-	// 		return (0);
-	// 	if (data->num_p_ate_all == data->num_of_phils)
-	// 		return (0);
-	// 	pthread_mutex_unlock(&data->death_mutex);
-	// }
-	ft_free(data);
 	return (0);
 }
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:24:15 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/28 22:27:06 by kos              ###   ########.fr       */
+/*   Updated: 2022/06/30 21:13:35 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "philo.h"
 
 void	print_fork(t_phil *phil, int fork)
 {
@@ -36,11 +36,6 @@ void	take_fork(t_phil *phil)
 	{
 		pthread_mutex_lock(&phil->forks[phil->data->num_of_phils - 1].mutex);
 		print_fork(phil, 1);
-		if (phil->data->num_of_phils == 1)
-		{
-			smart_usleep(phil->data->time_to_die + 1);
-			death_check(phil);
-		}
 		pthread_mutex_lock(&phil->forks[phil->id].mutex);
 		print_fork(phil, 2);
 	}

@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:31:30 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/28 22:23:25 by kos              ###   ########.fr       */
+/*   Updated: 2022/06/30 21:13:24 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "philo.h"
+
+void	exit_with_message(char *message)
+{
+	printf("%s\n", message);
+	exit (1);
+}
 
 void	ft_free(t_data *data)
 {
@@ -46,15 +52,28 @@ long	get_current_time(void)
 	return (tm.tv_sec * 1000 + tm.tv_usec / 1000);
 }
 
-void	death_check(t_phil *phil)
+int	ft_atoi(const char *nptr)
 {
-	if ((get_current_time() - phil->last_time_eat) > phil->data->time_to_die)
+	int				i;
+	long long int	k;
+	int				minus;
+
+	i = 0;
+	k = 0;
+	minus = 1;
+	while ((nptr[i] > 8 && nptr[i] < 14) || (nptr[i] == 32))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		pthread_mutex_lock(&phil->data->print_mutex);
-		pthread_mutex_lock(&phil->data->death_mutex);
-		printf("%ld %d died\n", get_current_time() - \
-			phil->data->thread_start_time, phil->id + 1);
-		phil->data->phil_is_dead = 1;
-		pthread_mutex_unlock(&phil->data->death_mutex);
+		if (nptr[i] == '-')
+			minus = 1 * (-1);
+		i++;
 	}
+	while (nptr[i] > 47 && nptr[i] < 58)
+	{
+		k = k * 10 + (nptr[i++] - '0');
+		if (k < 0)
+			return (0);
+	}
+	return (k * minus);
 }

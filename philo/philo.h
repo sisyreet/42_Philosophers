@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kos <kos@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:32:48 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/06/28 22:14:43 by kos              ###   ########.fr       */
+/*   Updated: 2022/06/30 21:14:37 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	print_eat(t_phil *phil);
 void	print_rest(t_phil *phil);
 void	put_back_fork(t_phil *phil);
 long	get_current_time(void);
-void	death_check(t_phil *phil);
 void	smart_usleep(int ttsz);
 int		check_malloc(t_data *data);
 void	ft_free(t_data *data);
 int		join_threads(t_data *data);
+void	exit_with_message(char *message);
 
 #endif

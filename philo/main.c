@@ -6,11 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:23:39 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/04/06 15:58:10 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:13:40 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "philo.h"
 
 int	main(int argc, char **argv)
 {
