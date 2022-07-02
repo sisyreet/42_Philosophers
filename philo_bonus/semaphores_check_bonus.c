@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 21:47:11 by kos               #+#    #+#             */
-/*   Updated: 2022/07/01 19:03:30 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:09:23 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,10 @@ int	check_death_semaphore(t_env *env)
 	return (0);
 }
 
-int	check_eat_semaphore(t_env *env, t_philo *philo)
+int	check_eats_done(t_env *env, t_philo *philo)
 {
-	sem_wait(env->eat_sem);
 	if (env->notepme != -1 && philo->eats_done >= env->notepme)
-	{
-		sem_post(env->eat_sem);
 		return (1);
-	}
-	sem_post(env->eat_sem);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 18:56:09 by sisyreet          #+#    #+#              #
-#    Updated: 2022/07/01 19:00:30 by sisyreet         ###   ########.fr        #
+#    Updated: 2022/07/02 16:07:09 by sisyreet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SANITIZE		= -fsanitize=thread
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(OBJS) -o $(NAME)
+				$(CC) $(OBJS) -o $(NAME) $(SANITIZE)
 
 %.o:			%.c $(HEADER)
 				$(CC) $(CFLAGS) -c $< -o $@ 

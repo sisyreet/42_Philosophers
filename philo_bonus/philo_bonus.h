@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 20:05:06 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/07/01 20:51:03 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:54:19 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	smart_usleep(int tts);
 long	get_current_time(void);
 void	init_env(t_env *env, char **argv);
 void	start_process(t_env *env);
-int		check_eat_semaphore(t_env *env, t_philo *philo);
+int		check_eats_done(t_env *env, t_philo *philo);
 void	death_check(t_env *env, t_philo *philo);
 int		check_death_semaphore(t_env *env);
 void	print_actions(t_env *env, int id, char *action);

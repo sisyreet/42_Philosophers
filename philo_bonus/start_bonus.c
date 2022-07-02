@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 20:52:22 by kos               #+#    #+#             */
-/*   Updated: 2022/07/01 20:55:19 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:04:15 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*dm(void *phil)
 	{
 		death_check(philo->env, philo);
 		usleep(1000);
-		if (check_eat_semaphore(philo->env, philo))
+		if (check_eats_done(philo->env, philo))
 			break ;
 	}
 	return (NULL);
@@ -36,12 +36,10 @@ void	routine(t_philo *philo)
 	print_actions(env, philo->id, "has taken a fork");
 	sem_wait(env->forks_sem);
 	print_actions(env, philo->id, "has taken a fork");
-	sem_wait(env->eat_sem);
 	print_actions(env, philo->id, "is eating");
-	philo->eats_done++;
 	philo->last_time_eat = get_current_time();
-	sem_post(env->eat_sem);
 	smart_usleep(env->time_to_eat);
+	philo->eats_done++;
 	sem_post(env->forks_sem);
 	sem_post(env->forks_sem);
 }
@@ -56,7 +54,7 @@ void	action(t_philo *philo)
 	{
 		routine(philo);
 		if (check_death_semaphore(philo->env)
-			|| (check_eat_semaphore(philo->env, philo)))
+			|| (check_eats_done(philo->env, philo)))
 			break ;
 		print_actions(philo->env, philo->id, "is sleeping");
 		smart_usleep(philo->env->time_to_sleep);
